@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Senior Sidekick Austin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Senior Sidekick Austin - Student volunteers helping seniors with errands, technology, lifting, and friendly visits."
+  />
+  <style>
+    :root {
+      --primary: #ff7a3c;
+      --primary-dark: #e06328;
+      --accent: #3366ff;
+      --bg: #f7f5ff;
+      --text: #222222;
+      --muted: #666666;
+      --card-bg: #ffffff;
+      --radius-lg: 18px;
+      --radius-sm: 10px;
+      --shadow-soft: 0 12px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* Layout */
+
+    header {
+      background: radial-gradient(circle at top left, #ffe1cf, #f7f5ff 55%);
+      padding: 1.2rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(10px);
+    }
+
+    .nav {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .brand-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.4rem;
+      font-weight: 700;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .brand-text-title {
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-text-sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.2rem;
+      align-items: center;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      font-weight: 500;
+      padding: 0.2rem 0.1rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-dark);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.7rem 1.3rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.92rem;
+      letter-spacing: 0.01em;
+      transition: transform 0.15s ease, box-shadow 0.15s ease,
+        background 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #fff;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 35px rgba(0, 0, 0, 0.16);
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      background: #fff;
+      color: var(--primary-dark);
+    }
+
+    .btn-outline:hover {
+      background: #fff5ee;
+    }
+
+    main {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem 4rem;
+    }
+
+    /* Hero */
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 2rem;
+      padding: 2.5rem 0 2rem;
+      align-items: center;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      background: #ffe6d8;
+      color: var(--primary-dark);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.1rem, 3vw, 2.7rem);
+      margin: 0.9rem 0 0.4rem;
+      line-height: 1.15;
+    }
+
+    .hero h1 span {
+      color: var(--primary-dark);
+    }
+
+    .hero-sub {
+      color: var(--muted);
+      font-size: 0.98rem;
+      max-width: 32rem;
+    }
+
+    .hero-actions {
+      margin-top: 1.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      align-items: center;
+    }
+
+    .hero-note {
+      margin-top: 0.8rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .hero-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-top: 1.2rem;
+      font-size: 0.8rem;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .hero-graphic {
+      position: relative;
+      padding: 1.2rem;
+    }
+
+    .hero-card {
+      border-radius: 24px;
+      background: var(--card-bg);
+      padding: 1.3rem 1.4rem;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .hero-logo-big {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .hero-logo-icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 999px;
+      background: radial-gradient(circle at top left, var(--accent), var(--primary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 2rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .hero-logo-text {
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+
+    .hero-mini {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .hero-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.3rem 0 0;
+      font-size: 0.85rem;
+    }
+
+    .hero-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .hero-pill {
+      position: absolute;
+      bottom: 0.4rem;
+      right: 0;
+      transform: translateY(35%);
+      border-radius: 999px;
+      background: #111827;
+      color: #fff9f3;
+      padding: 0.55rem 0.9rem;
+      font-size: 0.8rem;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    /* Sections */
+
+    section {
+      margin-top: 3rem;
+    }
+
+    section h2 {
+      font-size: 1.6rem;
+      margin-bottom: 0.2rem;
+    }
+
+    section > p.section-intro {
+      margin-top: 0;
+      color: var(--muted);
+      font-size: 0.93rem;
+      max-width: 40rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.4rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 1.1rem 1.2rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    .card h3 {
+      margin: 0 0 0.4rem;
+      font-size: 1.05rem;
+    }
+
+    .card p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .chip-row {
+      margin-top: 0.6rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .chip {
+      font-size: 0.78rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      background: #f2f0ff;
+      color: #4b4b7f;
+    }
+
+    .list-check {
+      list-style: none;
+      padding: 0;
+      margin: 0.7rem 0 0;
+      font-size: 0.9rem;
+    }
+
+    .list-check li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.45rem;
+      margin-bottom: 0.3rem;
+      color: var(--muted);
+    }
+
+    .list-check span.icon {
+      margin-top: 0.1rem;
+    }
+
+    /* Two-column sections */
+
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 1.6rem;
+      margin-top: 1.4rem;
+      align-items: start;
+    }
+
+    .note {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 0.4rem;
+    }
+
+    /* Contact */
+
+    .contact-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 1.4rem;
+      background: #111827;
+      color: #f9fafb;
+      border-radius: 24px;
+      padding: 1.6rem 1.8rem;
+      margin-top: 1.4rem;
+      align-items: center;
+    }
+
+    .contact-card h2 {
+      margin-top: 0;
+      color: #fff9f3;
+    }
+
+    .contact-item {
+      font-size: 0.92rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .contact-item span.label {
+      display: inline-block;
+      min-width: 70px;
+      font-weight: 600;
+      color: #e5e7eb;
+    }
+
+    .contact-actions {
+      margin-top: 0.7rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .contact-actions .btn-outline {
+      border-color: rgba(249, 250, 251, 0.3);
+      color: #f9fafb;
+      background: transparent;
+    }
+
+    .qr-placeholder {
+      border-radius: var(--radius-sm);
+      border: 1px dashed rgba(249, 250, 251, 0.6);
+      padding: 1.1rem;
+      font-size: 0.85rem;
+      text-align: center;
+      color: #e5e7eb;
+    }
+
+    footer {
+      margin-top: 2.5rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-align: center;
+      padding-bottom: 1rem;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 900px) {
+      .hero,
+      .two-col,
+      .contact-card {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-graphic {
+        order: -1;
+      }
+    }
+
+    @media (max-width: 720px) {
+      header {
+        padding-inline: 1rem;
+      }
+
+      main {
+        padding-inline: 1rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 1.6rem;
+      }
+
+      .grid-3 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <div class="brand-logo" aria-hidden="true">
+          <!-- Simple logo: kid + senior forming a heart idea -->
+          🧒🏽❤️👵🏼
+        </div>
+        <div>
+          <div class="brand-text-title">Senior Sidekick Austin</div>
+          <div class="brand-text-sub">Student volunteers helping seniors</div>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#safety">Safety</a>
+        <a href="#volunteer">Volunteer</a>
+        <a href="#contact" class="btn btn-primary">Request Help</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div>
+        <div class="hero-tag">
+          <span>NEW</span> • Senior Sidekick Austin
+        </div>
+        <h1>
+          Friendly help &amp; extra hands<br />
+          for seniors in <span>Austin</span>.
+        </h1>
+        <p class="hero-sub">
+          Senior Sidekick connects local student volunteers with older adults
+          who need help with errands, technology, lifting &amp; moving light
+          items, and friendly check-ins. Always free, always respectful.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Request Help</a>
+          <a href="#volunteer" class="btn btn-outline">Become a Sidekick</a>
+        </div>
+
+        <div class="hero-badge-row">
+          <div class="hero-badge">✅ Free for seniors</div>
+          <div class="hero-badge">🧡 Run by Austin students</div>
+          <div class="hero-badge">🌟 Great for college apps &amp; community</div>
+        </div>
+
+        <p class="hero-note">
+          *We currently serve seniors in Austin, Texas and nearby neighborhoods.
+        </p>
+      </div>
+
+      <div class="hero-graphic" aria-hidden="true">
+        <div class="hero-card">
+          <div class="hero-logo-big">
+            <div class="hero-logo-icon">🦸‍♂️</div>
+            <div>
+              <div class="hero-logo-text">Your Senior Sidekick</div>
+              <div class="hero-mini">
+                One student volunteer matched to each senior.
+              </div>
+            </div>
+          </div>
+          <ul class="hero-list">
+            <li>🛒 Grocery &amp; pharmacy pickup</li>
+            <li>📱 Technology help (phones, apps, Zoom, TV)</li>
+            <li>📦 Light lifting &amp; moving small items</li>
+            <li>🤝 Friendly outdoor visits &amp; conversation</li>
+          </ul>
+        </div>
+        <div class="hero-pill">
+          <span>💬</span>
+          <span>“Thank you for helping me stay independent.”</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <h2>What Senior Sidekick Can Help With</h2>
+      <p class="section-intro">
+        We focus on simple, practical support that makes everyday life a little
+        easier for older adults—while building real connection between
+        generations.
+      </p>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>Errands &amp; Everyday Tasks</h3>
+          <p>
+            We handle quick errands so you don’t have to. You choose the store
+            and time; we handle the driving and carrying.
+          </p>
+          <ul class="list-check">
+            <li>
+              <span class="icon">🛒</span>
+              <span>Grocery pickup &amp; drop-off (H-E-B, Target, etc.)</span>
+            </li>
+            <li>
+              <span class="icon">💊</span>
+              <span>Pharmacy runs &amp; basic household items</span>
+            </li>
+            <li>
+              <span class="icon">📦</span>
+              <span>Mail &amp; package pickup (porch-safe)</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Technology Help</h3>
+          <p>
+            Patient, one-on-one help with everyday technology so you can stay
+            connected with family, friends, and doctors.
+          </p>
+          <ul class="list-check">
+            <li>
+              <span class="icon">📱</span>
+              <span>Smartphones: contacts, texting, photos, apps</span>
+            </li>
+            <li>
+              <span class="icon">💻</span>
+              <span>Email, Zoom, and telehealth appointments</span>
+            </li>
+            <li>
+              <span class="icon">📺</span>
+              <span>TV streaming setup (Netflix, YouTube, etc.)</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Extra Hands &amp; Companionship</h3>
+          <p>
+            Sometimes you just need a little help and a friendly face. Sidekicks
+            provide both.
+          </p>
+          <ul class="list-check">
+            <li>
+              <span class="icon">📦</span>
+              <span>Light lifting &amp; moving small/medium items</span>
+            </li>
+            <li>
+              <span class="icon">🚮</span>
+              <span>Trash bin pull-out/return, small tasks</span>
+            </li>
+            <li>
+              <span class="icon">🤝</span>
+              <span>Outdoor visits, walks, and conversation</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how-it-works">
+      <h2>How It Works</h2>
+      <p class="section-intro">
+        We keep it simple and safe. Seniors (or family members) can request help
+        in just a few minutes.
+      </p>
+
+      <div class="two-col">
+        <div>
+          <ol class="list-check">
+            <li>
+              <span class="icon">1️⃣</span>
+              <span>
+                <strong>Request a Sidekick.</strong><br />
+                Call us or fill out the online form with your name, address, and
+                what you need help with.
+              </span>
+            </li>
+            <li>
+              <span class="icon">2️⃣</span>
+              <span>
+                <strong>We match a volunteer.</strong><br />
+                A student Sidekick confirms the details and schedules a time.
+              </span>
+            </li>
+            <li>
+              <span class="icon">3️⃣</span>
+              <span>
+                <strong>We show up &amp; help.</strong><br />
+                Your Sidekick arrives at the agreed time, completes the task,
+                and checks in that everything looks good.
+              </span>
+            </li>
+          </ol>
+          <p class="note">
+            There is <strong>no charge</strong> for seniors. If you’d like to
+            support gas and supplies in the future, we’ll share donation
+            options—but service stays free.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Who Can Request Help?</h3>
+          <p>
+            Senior Sidekick is designed for older adults in the Austin area who:
+          </p>
+          <ul class="list-check">
+            <li>
+              <span class="icon">👵</span>
+              <span>Are 65+ (or younger with mobility challenges)</span>
+            </li>
+            <li>
+              <span class="icon">🚗</span>
+              <span>Would appreciate help with errands, tech, or lifting</span>
+            </li>
+            <li>
+              <span class="icon">🏠</span>
+              <span>Live in Austin or nearby neighborhoods</span>
+            </li>
+          </ul>
+          <p class="note">
+            Family members or caregivers are welcome to submit requests on
+            behalf of a senior.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SAFETY -->
+    <section id="safety">
+      <h2>Safety First, Always</h2>
+      <p class="section-intro">
+        We take safety seriously—for seniors and for our student volunteers.
+        Here are our core safety rules.
+      </p>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>For Seniors</h3>
+          <ul class="list-check">
+            <li>
+              <span class="icon">🚪</span>
+              <span>Doorstep-only service unless otherwise arranged</span>
+            </li>
+            <li>
+              <span class="icon">💳</span>
+              <span>No cash handling; we use pre-paid or store pickup</span>
+            </li>
+            <li>
+              <span class="icon">📞</span>
+              <span>Clear communication about who is coming &amp; when</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>For Volunteers</h3>
+          <ul class="list-check">
+            <li>
+              <span class="icon">👨‍👩‍👧</span>
+              <span>Parents know each errand and have location sharing</span>
+            </li>
+            <li>
+              <span class="icon">🌙</span>
+              <span>No errands after dark for new volunteers</span>
+            </li>
+            <li>
+              <span class="icon">📍</span>
+              <span>Only safe, pre-approved neighborhoods</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Respect &amp; Privacy</h3>
+          <ul class="list-check">
+            <li>
+              <span class="icon">🤝</span>
+              <span>Always respectful, patient, and non-judgmental</span>
+            </li>
+            <li>
+              <span class="icon">🔒</span>
+              <span>No posting photos without explicit permission</span>
+            </li>
+            <li>
+              <span class="icon">📝</span>
+              <span>Basic records kept only for scheduling &amp; safety</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- VOLUNTEER -->
+    <section id="volunteer">
+      <h2>Become a Senior Sidekick</h2>
+      <p class="section-intro">
+        Are you a high school or college student in Austin who wants meaningful
+        service hours and real connection with older adults?
+      </p>
+
+      <div class="two-col">
+        <div class="card">
+          <h3>Why Volunteer?</h3>
+          <ul class="list-check">
+            <li>
+              <span class="icon">🎓</span>
+              <span>Earn community service hours for school &amp; college apps</span>
+            </li>
+            <li>
+              <span class="icon">🧡</span>
+              <span>Make a real difference for seniors in your community</span>
+            </li>
+            <li>
+              <span class="icon">🧠</span>
+              <span>Build leadership, empathy, and communication skills</span>
+            </li>
+          </ul>
+          <p class="note">
+            We provide simple guidelines and support—no prior experience
+            required.
+          </p>
+        </div>
+
+        <div>
+          <p>
+            To apply as a volunteer, please share your name, school, age, and
+            why you want to be a Sidekick. A parent or guardian will need to
+            sign a permission form if you are under 18.
+          </p>
+          <div class="chip-row">
+            <span class="chip">High school students</span>
+            <span class="chip">College students</span>
+            <span class="chip">Bilingual volunteers</span>
+          </div>
+          <p class="note">
+            We especially welcome bilingual (English/Spanish) volunteers to
+            support Spanish-speaking seniors in Austin.
+          </p>
+          <a href="#contact" class="btn btn-outline">I'm interested — contact me</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2>Request Help or Get In Touch</h2>
+      <p class="section-intro">
+        Seniors, family members, and potential volunteers can reach us in any of
+        these ways. We’ll respond as quickly as we can.
+      </p>
+
+      <div class="contact-card">
+        <div>
+          <h2>Contact Senior Sidekick Austin</h2>
+          <p class="contact-item">
+            <span class="label">Phone:</span>
+            <span>YOUR_PHONE_HERE</span>
+          </p>
+          <p class="contact-item">
+            <span class="label">Email:</span>
+            <span>YOUR_EMAIL_HERE</span>
+          </p>
+          <p class="contact-item">
+            <span class="label">Form:</span>
+            <span>
+              <a href="YOUR_GOOGLE_FORM_LINK_HERE" target="_blank"
+                >Senior Sidekick Request Form</a
+              >
+            </span>
+          </p>
+          <div class="contact-actions">
+            <a href="tel:YOUR_PHONE_HERE" class="btn btn-primary">Call Now</a>
+            <a href="YOUR_GOOGLE_FORM_LINK_HERE" class="btn btn-outline" target="_blank"
+              >Fill Out Request Form</a
+            >
+          </div>
+          <p class="note">
+            Please do not share sensitive medical or financial details in the
+            form. We’ll follow up by phone if we need more information.
+          </p>
+        </div>
+
+        <div>
+          <div class="qr-placeholder">
+            Place your <strong>QR code</strong> here that links to your request
+            form.<br /><br />
+            You can generate a QR code for your Google Form and upload it as an
+            image.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Senior Sidekick Austin • Student-led senior support in Austin, Texas<br />
+      This site is for informational purposes and does not replace medical,
+      legal, or emergency services.
+    </footer>
+  </main>
+</body>
+</html>
+
